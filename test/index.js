@@ -3,8 +3,12 @@ import 'babel-core/register';
 
 import color2code from '../src/lib/';
 
+const invalidColor = 'reed';
+const invalidColors1 = 'reed green';
+const invalidColors2 = 'green reed';
 const testColor = 'red';
 const multiColors = 'red green';
+const invalidColorMSG = 'Sorry, this dosen\'t seem to be a valid Web color name';
 const noColorMSG = 'Please provide a color name and try again.';
 
 const expRedResult = {
@@ -52,4 +56,16 @@ test('color2code: multiColors check red rgb value', (t) => {
 
 test('color2code: multiColors check green rgb', (t) => {
   t.is(color2code(multiColors)[1].rgb, expGreenResult.rgb);
+});
+
+test('color2code: invalid color name', (t) => {
+  t.is(color2code(invalidColor), invalidColorMSG);
+});
+
+test('color2code: invalid color name multiple order 1', (t) => {
+  t.is(color2code(invalidColors1), invalidColorMSG);
+});
+
+test('color2code: invalid color name multiple order 2', (t) => {
+  t.is(color2code(invalidColors2), invalidColorMSG);
 });

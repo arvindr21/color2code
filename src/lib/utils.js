@@ -24,7 +24,13 @@ export function processColor(colorName) {
   };
 
   try {
-    color.hex = `#${colorMap[colorName]}`;
+    const hex = colorMap[colorName];
+
+    if (!hex) {
+      return false;
+    }
+
+    color.hex = `#${hex}`;
 
     const rgb = hexToRGB(color.hex);
     color.rgb = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
